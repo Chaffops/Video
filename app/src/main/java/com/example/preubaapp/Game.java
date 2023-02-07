@@ -27,7 +27,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private List<Enemy> enemyList = new ArrayList<Enemy>();
     private List<Spell> spellList = new ArrayList<Spell>();
     private int joystickPointerID = 0;
-    private int numberOfSpellsToCast=0;
+    private int numberOfSpellsToCast = 0;
 
 
     public Game(Context context) {
@@ -125,7 +125,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         if (Enemy.readyToSpawn()) {
             enemyList.add(new Enemy(getContext(), player));
         }
-        while (numberOfSpellsToCast > 0){
+        while (numberOfSpellsToCast > 0) {
             spellList.add(new Spell(getContext(), player));
             numberOfSpellsToCast--;
         }
@@ -143,6 +143,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             if (Circle.isColliding(enemy, player)) {
 
                 iteratorEnemy.remove();
+                player.setHealthPoints(player.getHealthPoints() - 1);
                 continue;
             }
             Iterator<Spell> iteratorSpell = spellList.iterator();
